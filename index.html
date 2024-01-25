@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Front-end by sborkaproject.com -->
+    <meta charset="utf-8" />
+    <title>АудиоКлуб - Весь мир аудиов одном приложении!</title>
+    <meta
+      name="description"
+      content="Любимая музыка, радио, интересные подкаcты и аудиокниги теперь всегда под рукой!"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <script type="text/javascript">
+      (function () {
+        var modificators = [],
+          nv = navigator,
+          pl = nv.platform.toLowerCase(),
+          ua = nv.userAgent.toLowerCase(),
+          an = nv.appName.toLowerCase(),
+          htmlElement = document.documentElement,
+          ls = localStorage;
+
+        function pli(s) {
+          return pl.indexOf(s) > -1;
+        }
+        function uai(s) {
+          return ua.indexOf(s) > -1;
+        }
+        function ani(s) {
+          return an.indexOf(s) > -1;
+        }
+
+        // Platform
+        var platformClass =
+          uai('iphone') ||
+          uai('ipod') ||
+          uai('ipad') ||
+          uai('android') ||
+          uai('iemobile') ||
+          uai('blackberry') ||
+          uai('bada')
+            ? '_mobile'
+            : '_desktop';
+        modificators.push(platformClass);
+
+        // OS
+        var osClass = '';
+        if (uai('ipad') || uai('iphone') || uai('ipod')) {
+          osClass = '_ios';
+        } else if (uai('android')) {
+          osClass = '_android';
+        } else if (pli('win')) {
+          osClass = '_win';
+        } else if (pli('mac')) {
+          osClass = '_mac';
+        } else if (pli('linux')) {
+          osClass = '_linux';
+        }
+        modificators.push(osClass);
+
+        // Browser
+        var browserClass = '';
+        if (uai('firefox')) {
+          browserClass = '_ff';
+        } else if (uai('opr')) {
+          browserClass = '_opera';
+        } else if (uai('yabrowser')) {
+          browserClass = '_yandex';
+        } else if (uai('edge')) {
+          browserClass = '_edge';
+        } else if (uai('trident') || ani('explorer') || ani('msie')) {
+          browserClass = '_ie';
+        } else if (uai('safari') && !uai('chrome')) {
+          browserClass = '_safari';
+        } else if (uai('chrome')) {
+          browserClass = '_chrome';
+        }
+        modificators.push(browserClass);
+
+        window.environmentObject = {
+          platform: platformClass,
+          os: osClass,
+          browser: browserClass,
+          isLocal: window.location.href.indexOf('http://localhost:') == 0,
+        };
+        htmlElement.className += ' ' + modificators.join(' ');
+
+        // SVG sprites
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', './assets/svg/sprite.svg', true);
+        xhr.overrideMimeType('image/svg+xml');
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            function waitForBody() {
+              console.log(document.body, 'body');
+              if (document.body) {
+                var containerClass = 'invisible-container';
+                var container = document.querySelector('.' + containerClass);
+                if (!container) {
+                  container = document.createElement('div');
+                  container.className = containerClass;
+                  document.body.insertBefore(container, document.body.firstChild);
+                }
+                container.appendChild(xhr.responseXML.documentElement);
+              } else {
+                setTimeout(waitForBody, 16);
+              }
+            }
+
+            waitForBody();
+          }
+        };
+
+        xhr.send('');
+      })();
+    </script>
+
+    <link rel="icon" type="image/png" href="../../assets/images/favicon.png" />
+
+    <link rel="stylesheet" href="./assets/css/styles.css?hash" />
+  </head>
+  <body>
+    <div class="info-banner">
+      <div class="main">
+        <p class="info-banner__text">с 1 марта приложение доступно в бета-версии</p>
+      </div>
+    </div>
+    <header class="header">
+      <div class="main">
+        <a class="header__logo" href="/">
+          <svg class="header__logo-icon">
+            <use xlink:href="#icon-logo" />
+          </svg>
+        </a>
+        <a href="#" class="header__login">Войти</a>
+      </div>
+    </header>
+    <div class="wrapper">
+      <section class="introduce">
+        <div class="swiper__container banners">
+          <div class="swiper" id="banner">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a class="banner" href="#">
+                  <div class="banner__container" style="background-image: url()">
+                    <div class="banner__content banner__content_column-center">
+                      <div class="banner__wrapper">
+                        <div class="banner__main-content">
+                          <h1 class="banner__title fs-1">Весь мир аудиов одном приложении</h1>
+                          <p class="banner__description fs-5">
+                            Любимая музыка, радио, интересные подкаcты и аудиокниги теперь всегда
+                            под рукой!
+                          </p>
+                          <button class="button button_big banner__button" id="">
+                            Слушать бесплатно
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="banner__mobile">
+                        <p class="banner__description fs-5">
+                          Любимая музыка, радио, интересные подкаcты и аудиокниги теперь всегда под
+                          рукой!
+                        </p>
+                        <button class="button button_big banner__button" id="">
+                          Слушать бесплатно
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a class="banner banner_with-icon" href="#">
+                  <div class="banner__container" style="background-image: url()">
+                    <div class="banner__content banner__content_column-center">
+                      <div class="banner__wrapper">
+                        <img class="banner__img" src="./assets/images/banner-1.png" />
+
+                        <div class="banner__main-content">
+                          <div class="banner__subtitle fs-5">Сурганова и оркестр</div>
+                          <h1 class="banner__title fs-1">Релиз нового альбома</h1>
+                          <p class="banner__description fs-5">Эксклюзивно только в АудиоКлубе!</p>
+                          <button class="button button_big banner__button" id="">
+                            Слушать бесплатно
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="banner__mobile">
+                        <p class="banner__description fs-5">Эксклюзивно только в АудиоКлубе!</p>
+                        <button class="button button_big banner__button" id="">
+                          Слушать бесплатно
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a class="banner" href="#">
+                  <div
+                    class="banner__container"
+                    style="background-image: url(./assets/images/banner-bg.png)"
+                  >
+                    <div class="banner__content banner__content_column-center">
+                      <div class="banner__wrapper">
+                        <div class="banner__main-content">
+                          <div class="banner__subtitle fs-5">Сурганова и оркестр</div>
+                          <h1 class="banner__title fs-1">Релиз нового альбома</h1>
+                          <p class="banner__description fs-5">Эксклюзивно только в АудиоКлубе!</p>
+                          <button class="button button_big banner__button" id="">
+                            Слушать бесплатно
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="banner__mobile">
+                        <p class="banner__description fs-5">Эксклюзивно только в АудиоКлубе!</p>
+                        <button class="button button_big banner__button" id="">
+                          Слушать бесплатно
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="swiper media" id="media">
+          <div class="swiper-pagination"></div>
+          <div class="swiper-wrapper tabs-content">
+            <div class="swiper-slide" id="mixTab-content">
+              <div class="media-view">
+                <div class="media-view__content">
+                  <div class="media-view__desktop">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/2.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/3.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/5.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/9.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/10.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/11.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/13.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/14.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/15.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/16.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/17.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/18.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/19.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/20.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/21.png" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="media-view__mobile">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/2.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/3.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/5.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/9.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_fourth">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/10.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/11.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/13.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/mix/14.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" id="musicTab-content">
+              <div class="media-view">
+                <div class="media-view__content">
+                  <div class="media-view__desktop">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__item">
+                        <div class="media-view-item">
+                          <div class="media-view-item__image-wrapper">
+                            <img
+                              class="media-view-item__image"
+                              src="./assets/images/media/music/1.png"
+                            />
+                          </div>
+                          <div class="media-view-item__description">
+                            <p class="media-view-item__author">Сурганова и оркестр</p>
+                            <h2 class="media-view-item__title">Релиз нового альбома</h2>
+                            <p class="media-view-item__text">Эксклюзивно только в АудиоКлубе!</p>
+                            <a class="media-view-item__link" href="#"> Cлушать </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/2.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/3.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/5.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/9.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/10.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/11.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/13.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/14.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/15.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/16.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/17.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/18.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/19.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/20.png" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="media-view__mobile">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__item">
+                        <div class="media-view-item">
+                          <div class="media-view-item__image-wrapper">
+                            <img
+                              class="media-view-item__image"
+                              src="./assets/images/media/music/1.png"
+                            />
+                          </div>
+                          <div class="media-view-item__description">
+                            <p class="media-view-item__author">Сурганова и оркестр</p>
+                            <h2 class="media-view-item__title">Релиз нового альбома</h2>
+                            <p class="media-view-item__text">Эксклюзивно только в АудиоКлубе!</p>
+                            <a class="media-view-item__link" href="#"> Cлушать </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/2.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/3.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/4.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/5.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/8.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_fourth">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/9.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/10.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/11.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/music/13.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" id="podcastsTab-content">
+              <div class="media-view">
+                <div class="media-view__content">
+                  <div class="media-view__desktop">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/2.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/3.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/5.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/9.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/10.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/11.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/12.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/13.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/14.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/15.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/16.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/17.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/18.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/19.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/20.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/21.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="media-view__mobile">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/2.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/3.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/5.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/podcasts/9.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_fourth">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/10.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/11.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/12.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/13.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/podcasts/14.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" id="audiobooksTab-content">
+              <div class="media-view">
+                <div class="media-view__content">
+                  <div class="media-view__desktop">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/1.png"
+                        />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/2.png"
+                        />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/3.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/4.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/5.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/6.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/7.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/8.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/9.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/10.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/11.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/12.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/13.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/14.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/15.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/16.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/17.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/18.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/19.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/20.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/21.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="media-view__mobile">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/1.png"
+                        />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/2.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/3.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/4.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/5.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/6.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/7.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/8.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/9.png"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_fourth">
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/10.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/11.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/12.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/13.png"
+                        />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img
+                          class="media-view__image"
+                          src="./assets/images/media/audiobooks/14.png"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" id="radioTab-content">
+              <div class="media-view">
+                <div class="media-view__content">
+                  <div class="media-view__desktop">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/2.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/3.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/5.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/9.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/10.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/11.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/13.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/14.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/15.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/16.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/17.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/18.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/19.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/20.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/21.png" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="media-view__mobile">
+                    <div class="media-view__row media-view__row_first">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/1.png" />
+                      </div>
+
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/2.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_second">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/3.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/4.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/5.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_third">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/6.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/7.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/8.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/9.png" />
+                      </div>
+                    </div>
+
+                    <div class="media-view__row media-view__row_fourth">
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/10.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/11.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/12.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/13.png" />
+                      </div>
+                      <div class="media-view__image-wrapper">
+                        <img class="media-view__image" src="./assets/images/media/radio/14.png" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="phone__container" id="#phone">
+        <h2 class="devices-title fs-2 fw-bold">Слушайте на любом устройстве</h2>
+        <div class="ipad"></div>
+
+        <div class="phone__wrapper">
+          <div class="phone">
+            <div class="section section_left">
+              <div class="section__block section__icons">
+                <svg class="section__icon section__icon_first" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-1" />
+                </svg>
+
+                <svg class="section__icon section__icon_second" viewBox="0 0 252 127">
+                  <use xlink:href="#icon-animation-left-2" />
+                </svg>
+
+                <svg class="section__icon section__icon_third" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-3" />
+                </svg>
+
+                <svg class="section__icon section__icon_fourth" viewBox="0 0 127 378">
+                  <use xlink:href="#icon-animation-left-4" />
+                </svg>
+
+                <svg class="section__icon section__icon_fifth" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-5" />
+                </svg>
+
+                <svg class="section__icon section__icon_six" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-6" />
+                </svg>
+              </div>
+
+              <div class="section__block section__description">
+                <h3 class="section__description-title fs-3 fw-bold">Ваш персональный мир аудио</h3>
+                <p class="fs-5">
+                  Вам доступно несколько умных режимов, в каждом из которых вы найдете особенный
+                  аудиоконтент на все случаи жизни: с учетом ваших интересов, предпочтений и
+                  настроения!
+                </p>
+              </div>
+
+              <div class="section__block section__icons">
+                <svg class="section__icon section__icon_first" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-1" />
+                </svg>
+
+                <svg class="section__icon section__icon_second" viewBox="0 0 252 127">
+                  <use xlink:href="#icon-animation-left-2" />
+                </svg>
+
+                <svg class="section__icon section__icon_third" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-3" />
+                </svg>
+
+                <svg class="section__icon section__icon_fourth" viewBox="0 0 127 378">
+                  <use xlink:href="#icon-animation-left-4" />
+                </svg>
+
+                <svg class="section__icon section__icon_fifth" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-5" />
+                </svg>
+
+                <svg class="section__icon section__icon_six" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-6" />
+                </svg>
+              </div>
+
+              <div class="section__block section__description">
+                <h3 class="section__description-title fs-3 fw-bold">Настоящий АудиоКлуб!</h3>
+                <p class="fs-5">
+                  В АудиоКлубе всегда отличная компания. Вы можете ставить оценки, обмениваться
+                  мнениями с другими пользователями и даже общаться с любимыми артистами, авторами и
+                  ведущими подкастов и радио!
+                </p>
+              </div>
+
+              <div class="section__block section__icons">
+                <svg class="section__icon section__icon_first" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-1" />
+                </svg>
+
+                <svg class="section__icon section__icon_second" viewBox="0 0 252 127">
+                  <use xlink:href="#icon-animation-left-2" />
+                </svg>
+
+                <svg class="section__icon section__icon_third" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-3" />
+                </svg>
+
+                <svg class="section__icon section__icon_fourth" viewBox="0 0 127 378">
+                  <use xlink:href="#icon-animation-left-4" />
+                </svg>
+
+                <svg class="section__icon section__icon_fifth" viewBox="0 0 126 126">
+                  <use xlink:href="#icon-animation-left-5" />
+                </svg>
+
+                <svg class="section__icon section__icon_six" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-left-6" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="phone__first-layer">
+              <div class="phone__second-layer">
+                <div class="phone__content">
+                  <div class="screens">
+                    <div class="screen screen_6"></div>
+                    <div class="screen screen_5"></div>
+                    <div class="screen screen_4"></div>
+                    <div class="screen screen_3"></div>
+                    <div class="screen screen_2"></div>
+                    <div class="screen screen_1"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="phone__light-accent phone__light-accent_top"></div>
+              <div class="phone__light-accent phone__light-accent_bottom"></div>
+              <div class="phone__light-accent phone__light-accent_left-top"></div>
+              <div class="phone__light-accent phone__light-accent_left-bottom"></div>
+              <div class="phone__light-accent phone__light-accent_right-top"></div>
+              <div class="phone__light-accent phone__light-accent_right-bottom"></div>
+            </div>
+
+            <div class="section section_right">
+              <div class="section__block section__description">
+                <h3 class="section__description-title fs-3 fw-bold">
+                  Весь мир аудио в одном приложении
+                </h3>
+                <p class="fs-5">
+                  Любимая музыка и радио, интересные подкасты и аудио-книги теперь в одном удобном
+                  приложении!
+                </p>
+                <p class="fs-5">
+                  Создавайте коллекции, плейлисты, раскладывайте все по полочкам — ваша медиатека
+                  всегда в полном порядке.
+                </p>
+              </div>
+
+              <div class="section__block section__icons">
+                <svg class="section__icon section__icon_first" viewBox="0 0 126 252">
+                  <use xlink:href="#icon-animation-right-1" />
+                </svg>
+
+                <svg class="section__icon section__icon_second" viewBox="0 0 127 253">
+                  <use xlink:href="#icon-animation-right-2" />
+                </svg>
+
+                <svg class="section__icon section__icon_third" viewBox="0 0 127 127">
+                  <use xlink:href="#icon-animation-right-3" />
+                </svg>
+
+                <svg class="section__icon section__icon_fourth-1" viewBox="0 0 128 64">
+                  <use xlink:href="#icon-half-round" />
+                </svg>
+
+                <div class="section__icon section__icon_fourth-2"></div>
+
+                <svg class="section__icon section__icon_fourth-3" viewBox="0 0 128 64">
+                  <use xlink:href="#icon-half-round" />
+                </svg>
+
+                <svg class="section__icon section__icon_fifth" viewBox="0 0 126 127">
+                  <use xlink:href="#icon-animation-right-5" />
+                </svg>
+
+                <svg class="section__icon section__icon_six" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-right-6" />
+                </svg>
+
+                <svg class="section__icon section__icon_seven" viewBox="0 0 126 127">
+                  <use xlink:href="#icon-animation-right-7" />
+                </svg>
+              </div>
+
+              <div class="section__block section__description">
+                <h3 class="section__description-title fs-3 fw-bold">
+                  Сервис знакомств с новым аудиоконтентом
+                </h3>
+                <p class="fs-5">
+                  Игровой режим знакомства с новым контентом помогает нам лучше понимать друг друга
+                  и делает нашу систему рекомендаций еще лучше!
+                </p>
+              </div>
+
+              <div class="section__block section__icons">
+                <svg class="section__icon section__icon_first" viewBox="0 0 126 252">
+                  <use xlink:href="#icon-animation-right-1" />
+                </svg>
+
+                <svg class="section__icon section__icon_second" viewBox="0 0 127 253">
+                  <use xlink:href="#icon-animation-right-2" />
+                </svg>
+
+                <svg class="section__icon section__icon_third" viewBox="0 0 127 127">
+                  <use xlink:href="#icon-animation-right-3" />
+                </svg>
+
+                <svg class="section__icon section__icon_fourth-1" viewBox="0 0 128 64">
+                  <use xlink:href="#icon-half-round" />
+                </svg>
+
+                <div class="section__icon section__icon_fourth-2"></div>
+
+                <svg class="section__icon section__icon_fourth-3" viewBox="0 0 128 64">
+                  <use xlink:href="#icon-half-round" />
+                </svg>
+
+                <svg class="section__icon section__icon_fifth" viewBox="0 0 126 127">
+                  <use xlink:href="#icon-animation-right-5" />
+                </svg>
+
+                <svg class="section__icon section__icon_six" viewBox="0 0 252 252">
+                  <use xlink:href="#icon-animation-right-6" />
+                </svg>
+
+                <svg class="section__icon section__icon_seven" viewBox="0 0 126 127">
+                  <use xlink:href="#icon-animation-right-7" />
+                </svg>
+              </div>
+
+              <div class="section__block section__description">
+                <h3 class="section__description-title fs-3 fw-bold">Быть автором — просто!</h3>
+                <p class="fs-5">
+                  Вам есть, чем поделиться с миром? Полный вперед! У нас вы точно сможете найти свою
+                  аудиторию: публикуйте выпуски своих подкастов и записи аудиокниг, получайте отзывы
+                  и благодарности. А мы вас поддержим!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="desktop"></div>
+      </section>
+
+      <section class="tariffs">
+        <h2 class="section__description-title tariffs__title">Подберите свой тариф</h2>
+        <p class="tariffs__text">
+          Выберите тариф для себя — от бесплатного с перерывами на рекламу, до подписки для всей
+          семьи.
+        </p>
+        <div class="tariffs__wrapper_desktop">
+          <div class="tariffs__radio-buttons">
+            <div class="radio-button tariffs__radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="free"
+                name="tariffs"
+                value="free"
+              />
+              <label for="free" class="radio-button__label"> Бесплатный </label>
+            </div>
+
+            <div class="radio-button tariffs__radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="base"
+                name="tariffs"
+                value="base"
+                checked
+              />
+              <label for="base" class="radio-button__label"> Базовый </label>
+            </div>
+
+            <div class="radio-button tariffs__radio-button">
+              <input class="radio-button__input" type="radio" id="vip" name="tariffs" value="vip" />
+              <label for="vip" class="radio-button__label"> VIP </label>
+            </div>
+          </div>
+
+          <div class="tariffs__cards-wrapper">
+            <div class="tariff-card tariffs__card prev tariff-card_free" id="free-card">
+              <h2 class="tariff-card__title">Бесплатный</h2>
+
+              <div class="tariff-card__price-wrapper"></div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Лицензионный Базовый <br />
+                    каталог аудиокниг
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text"> Реклама в приложении </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Прослушивание только <br />
+                    с включенным экраном
+                  </span>
+                </li>
+
+                <a class="link link_primary tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_free">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-free-desktop" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="tariff-card tariffs__card active tariff-card_base" id="base-card">
+              <h2 class="tariff-card__title">Базовый</h2>
+
+              <div class="tariff-card__price-wrapper">
+                <div class="price-label price-label_filled tariff-card__price-item">
+                  <span class="price-label__price">199 ₽</span>
+                  <span class="price-label__duration">в месяц</span>
+                </div>
+              </div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Лицензионный Базовый <br />
+                    каталог аудиокниг
+
+                    <div class="hint tariff-card__option-hint">
+                      <span class="hint__text"> ? </span>
+
+                      <div class="popover hint__popover">
+                        Каталог для тех, кто только начинает знакомство с миром аудиокниг. Здесь
+                        реже появляются новинки и редкие книги, но можно найти большинство
+                        произведений российской и зарубежной классической литературы.
+                      </div>
+                    </div>
+                  </span>
+                </li>
+
+                <a class="link link_fourth tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_base">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-base-desktop" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="tariff-card tariffs__card next tariff-card_vip" id="vip-card">
+              <h2 class="tariff-card__title">VIP</h2>
+
+              <div class="tariff-card__price-wrapper">
+                <div class="price-label price-label_filled tariff-card__price-item">
+                  <span class="price-label__price">799 ₽</span>
+                  <span class="price-label__duration">в месяц</span>
+                </div>
+              </div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    VIP каталог аудиокниг
+
+                    <div class="hint tariff-card__option-hint">
+                      <span class="hint__text"> ? </span>
+
+                      <div class="popover hint__popover">
+                        Каталог для тех, кто только начинает знакомство с миром аудиокниг. Здесь
+                        реже появляются новинки и редкие книги, но можно найти большинство
+                        произведений российской и зарубежной классической литературы.
+                      </div>
+                    </div>
+                  </span>
+                </li>
+
+                <a class="link link_fourth tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_vip">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-vip-desktop" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tariffs__wrapper_mobile">
+          <div class="tariffs__radio-buttons">
+            <div class="radio-button tariffs__radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="m-free"
+                name="m-tariffs"
+                value="m-free"
+                checked
+              />
+              <label for="m-free" class="radio-button__label"> Бесплатный </label>
+            </div>
+
+            <div class="radio-button tariffs__radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="m-base"
+                name="m-tariffs"
+                value="m-base"
+              />
+              <label for="m-base" class="radio-button__label"> Базовый </label>
+            </div>
+
+            <div class="radio-button tariffs__radio-button">
+              <input
+                class="radio-button__input"
+                type="radio"
+                id="m-vip"
+                name="m-tariffs"
+                value="m-vip"
+              />
+              <label for="m-vip" class="radio-button__label"> VIP </label>
+            </div>
+          </div>
+
+          <div class="tariffs__cards-wrapper">
+            <div class="tariff-card tariffs__card tariff-card_free" id="m-free-card">
+              <h2 class="tariff-card__title">Бесплатный</h2>
+
+              <div class="tariff-card__price-wrapper"></div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Лицензионный Базовый <br />
+                    каталог аудиокниг
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text"> Реклама в приложении </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Прослушивание только <br />
+                    с включенным экраном
+                  </span>
+                </li>
+
+                <a class="link link_primary tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_free">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-free-desktop" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="tariff-card tariffs__card tariff-card_base" id="m-base-card">
+              <h2 class="tariff-card__title">Базовый</h2>
+
+              <div class="tariff-card__price-wrapper">
+                <div class="price-label price-label_filled tariff-card__price-item">
+                  <span class="price-label__price">199 ₽</span>
+                  <span class="price-label__duration">в месяц</span>
+                </div>
+              </div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Лицензионный Базовый <br />
+                    каталог аудиокниг
+
+                    <div class="hint tariff-card__option-hint">
+                      <span class="hint__text"> ? </span>
+
+                      <div class="popover hint__popover">
+                        Каталог для тех, кто только начинает знакомство с миром аудиокниг. Здесь
+                        реже появляются новинки и редкие книги, но можно найти большинство
+                        произведений российской и зарубежной классической литературы.
+                      </div>
+                    </div>
+                  </span>
+                </li>
+
+                <a class="link link_fourth tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_base">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-base-desktop" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="tariff-card tariffs__card tariff-card_vip" id="m-vip-card">
+              <h2 class="tariff-card__title">VIP</h2>
+
+              <div class="tariff-card__price-wrapper">
+                <div class="price-label price-label_filled tariff-card__price-item">
+                  <span class="price-label__price">799 ₽</span>
+                  <span class="price-label__duration">в месяц</span>
+                </div>
+              </div>
+
+              <ul class="tariff-card__options">
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    Музыка, подкасты, радио <br />
+                    без ограничений
+                  </span>
+                </li>
+                <li class="tariff-card__option">
+                  <span class="tariff-card__option-text">
+                    VIP каталог аудиокниг
+
+                    <div class="hint tariff-card__option-hint">
+                      <span class="hint__text"> ? </span>
+
+                      <div class="popover hint__popover">
+                        Каталог для тех, кто только начинает знакомство с миром аудиокниг. Здесь
+                        реже появляются новинки и редкие книги, но можно найти большинство
+                        произведений российской и зарубежной классической литературы.
+                      </div>
+                    </div>
+                  </span>
+                </li>
+
+                <a class="link link_fourth tariff-card__link" href="#"> Подробнее </a>
+              </ul>
+
+              <div class="tariff-card__image-wrapper tariff-card__image-wrapper_vip">
+                <svg class="tariff-card__image">
+                  <use xlink:href="#icon-tariff-card-vip-desktop" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="subscribe">
+        <div class="main">
+          <div class="subscribe__inner">
+            <h2 class="subscribe__title">Будьте в курсе</h2>
+            <p class="subscribe__text">
+              Получайте информацию об акциях, новинках
+              <br />
+              и спец. предложениях!
+            </p>
+            <form class="subscribe__form" id="subscribe-form">
+              <div class="input-wrapper subscribe__input">
+                <input
+                  class="input input_secondary"
+                  placeholder="Email"
+                  name="Email"
+                  id="subscribe-input"
+                />
+                <span class="input__status-message" id="input-status-message"></span>
+              </div>
+
+              <button class="button button_small" id="subscribe-button">Подписаться</button>
+            </form>
+            <p class="subscribe__info">
+              Нажимая на кнопку «Подписаться» вы соглашаетесь с
+              <button class="subscribe__button open-popup-button" value="privacy-policy-popup">
+                политикой конфиденциальности
+              </button>
+              и
+              <button class="subscribe__button open-popup-button" value="term-of-use-popup">
+                пользовательским соглашением
+              </button>
+            </p>
+          </div>
+        </div>
+      </section>
+      <div class="cookies hidden">
+        <p class="cookies__text">
+          На сайте используются файлы cookies. Продолжая использование сайта, вы соглашаетесь с
+          этим. Подробности в
+
+          <a class="link link_fifth" href="#"> политике конфиденциальности </a>
+        </p>
+        <button class="cookies__button">Я согласен, мне всё понятно</button>
+      </div>
+    </div>
+
+    <div class="popup privacy-policy-popup">
+      <div class="popup__content">
+        <button class="popup__close-button">
+          <svg class="popup__cross-icon">
+            <use xlink:href="#icon-cross" />
+          </svg>
+        </button>
+        <h1 class="popup__title">Политика конфиденциальности</h1>
+        <p>Понятия и термины:</p>
+        <p>
+          <b>Автоматизированная обработка персональных данных</b>&nbsp;— обработка персональных
+          данных с&nbsp;помощью средств вычислительной техники
+        </p>
+        <p>
+          <b>Информационная система персональных данных</b>&nbsp;— совокупность содержащихся
+          в&nbsp;базах данных персональных данных и&nbsp;обеспечивающих их&nbsp;обработку
+          информационных технологий и&nbsp;технических средств
+        </p>
+        <p>
+          <b>Обработка персональных данных</b>&nbsp;— любое действие (операция) или совокупность
+          действий (операций), совершаемых с&nbsp;использованием средств автоматизации или без
+          использования таких средств с&nbsp;персональными данными, включая сбор, запись,
+          систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение,
+          использование, передачу (распространение, предоставление, доступ), обезличивание,
+          блокирование, удаление, уничтожение персональных данных
+        </p>
+        <p>
+          <b>Оператор персональных данных</b>&nbsp;— государственный орган, муниципальный орган,
+          юридическое или физическое лицо, самостоятельно или совместно с&nbsp;другими лицами
+          организующие&nbsp;и (или) осуществляющие обработку персональных данных, а&nbsp;также
+          определяющие цели обработки персональных данных, состав персональных данных, подлежащих
+          обработке, действия (операции), совершаемые с&nbsp;персональными данными
+        </p>
+        <p>
+          <b>Персональные данные</b>&nbsp;— любая информация, относящаяся к&nbsp;прямо или косвенно
+          определенному или определяемому физическому лицу (субъекту персональных данных)
+        </p>
+        <p>
+          <b>Пользователь Сервиса</b>&nbsp;— лицо, достигшие 12&nbsp;лет, имеющее доступ
+          к&nbsp;Сервису, посредством сети Интернет и&nbsp;использующее Сервис.
+        </p>
+        <p>
+          <b>Трансграничная передача персональных данных</b>&nbsp;— передача персональных данных
+          на&nbsp;территорию иностранного государства органу власти иностранного государства,
+          иностранному физическому лицу или иностранному юридическому лицу
+        </p>
+        <p>
+          <b>Cookies</b>&nbsp;— небольшой фрагмент данных, отправленный web-сервером и&nbsp;хранимый
+          на&nbsp;компьютере Пользователя Сервиса, который web-клиент или web-браузер каждый раз
+          пересылает web-серверу в&nbsp;HTTP-запросе при попытке открыть страницу соответствующего
+          Сервиса
+        </p>
+        <p>
+          <b>IP-адрес</b>&nbsp;— уникальный сетевой адрес узла в&nbsp;компьютерной сети, построенной
+          по&nbsp;протоколу&nbsp;IP.
+        </p>
+        <h2>1. Общие положения</h2>
+        <p>
+          1.1. Настоящая Политика конфиденциальности (далее&nbsp;— Политика) разработана
+          в&nbsp;соответствии с&nbsp;требованиями Федерального закона от&nbsp;27.07.2006&nbsp;No
+          152-ФЗ «О&nbsp;персональных данных» и&nbsp;определяет принципы обработки
+          и&nbsp;обеспечения безопасности персональных данных при их&nbsp;обработке на&nbsp;Сервисе,
+          представляемого ООО «Чайковский» (далее&nbsp;— Сервис). Создавая учетную запись
+          на&nbsp;Сервисе, Пользователь признает, что он&nbsp;ознакомлен, согласен с&nbsp;условиями
+          и&nbsp;принимает настоящую Политику. Если Пользователь не&nbsp;согласен с&nbsp;этой
+          Политикой в&nbsp;целом или какой-либо ее&nbsp;частью, он&nbsp;не&nbsp;должен пользоваться
+          Сервисом.
+        </p>
+        <p>
+          1.2. Настоящая Политика определяет порядок и&nbsp;условия обработки персональных данных
+          на&nbsp;Сервисе и&nbsp;общие условия оказания услуг между ООО «Чайковский» (ОГРН
+          1217700277739; ИНН 7726478551; место нахождения: 117105, г. Москва, вн.тер.г.
+          муниципальный округ Донской, Варшавское шоссе, дом&nbsp;9, строение&nbsp;1А, этаж&nbsp;3,
+          помещение&nbsp;I, комната&nbsp;1) (далее&nbsp;— «Владелец Сервиса») и&nbsp;физическим
+          лицом, создавшим учетную запись на&nbsp;Сервисе, а&nbsp;также устанавливает права
+          субъектов персональных данных и&nbsp;ответственность за&nbsp;нарушения порядка обработки
+          персональных данных (далее&nbsp;— ПД).
+        </p>
+        <p>
+          1.3. Настоящая Политика действует в&nbsp;отношении всей информации, которую Владелец
+          Сервиса может получать о&nbsp;Пользователе Сервиса во&nbsp;время использования Сервиса
+          программ, услуг Сервиса.
+        </p>
+        <p>
+          1.4. Целью настоящей Политики является обеспечение соответствия требованиям
+          законодательства Российской Федерации в&nbsp;области обработки персональных данных.
+        </p>
+        <p>
+          1.5. Действие настоящей Политики распространяется на&nbsp;процессы обработки персональных
+          данных Сервисе и&nbsp;на&nbsp;все структурные подразделения и&nbsp;работников Владельца
+          Сервиса, участвующих в&nbsp;данных процессах.
+        </p>
+        <p>
+          1.6. В&nbsp;случае несогласия с&nbsp;условиями настоящей Политики Пользователь Сервиса
+          должен прекратить его использование и&nbsp;удалить учетную запись.
+        </p>
+        <p>
+          1.7. Настоящая Политика применяется только к&nbsp;Сервису, Владелец Сервиса
+          не&nbsp;контролирует и&nbsp;не&nbsp;несет ответственность за&nbsp;сервисы и&nbsp;сайты
+          третьих лиц, на&nbsp;которые Пользователь Сервиса может перейти по&nbsp;ссылкам, доступным
+          на&nbsp;Сервисе.
+        </p>
+        <h2>2. Принципы и&nbsp;правила обработки персональных данных</h2>
+        <p>
+          2.1. Обработка персональных данных осуществляется Владельцем Сервиса на&nbsp;законной
+          и&nbsp;справедливой основе и&nbsp;ограничивается достижением конкретных, заранее
+          определенных и&nbsp;законных целей. Обработке подлежат только персональные данные, которые
+          отвечают целям их&nbsp;обработки. Содержание и&nbsp;объем обрабатываемых Владельцем
+          Сервиса персональных данных соответствуют заявленным целям обработки, избыточность
+          обрабатываемых данных не&nbsp;допускается.
+        </p>
+        <p>
+          2.2. При обработке персональных данных Владельцем Сервиса обеспечивается точность
+          персональных данных, их&nbsp;достаточность и&nbsp;в&nbsp;необходимых случаях актуальность
+          по&nbsp;отношению к&nbsp;целям обработки персональных данных. Владельцем Сервиса
+          принимаются необходимые меры по&nbsp;удалению или уточнению неполных или неточных
+          персональных данных.
+        </p>
+        <p>
+          2.3. Хранение персональных данных Владельцем Сервиса осуществляется в&nbsp;форме,
+          позволяющей определить субъекта персональных данных, не&nbsp;дольше, чем этого требуют
+          цели обработки персональных данных, если срок хранения персональных данных
+          не&nbsp;установлен федеральным законом, договором, стороной которого, выгодоприобретателем
+          или поручителем, по&nbsp;которому является субъект персональных данных. Обрабатываемые
+          персональные данные подлежат уничтожению либо обезличиванию по&nbsp;достижении целей
+          обработки, если иное не&nbsp;предусмотрено федеральным законом.
+        </p>
+        <p>
+          2.4. Обработка персональных данных Владельцем Сервиса осуществляется автоматизированным
+          способом в&nbsp;информационных системах персональных данных.
+        </p>
+        <p>
+          2.5. Владелец Сервиса не&nbsp;осуществляет трансграничную передачу персональных данных
+          и&nbsp;не&nbsp;принимает решения в&nbsp;отношении субъекта персональных данных, основанные
+          исключительно на&nbsp;автоматизированной обработке.
+        </p>
+        <h2>3. Перечень обрабатываемых персональных данных Пользователя Сервисов.</h2>
+        <p>
+          3.1. Настоящая Политика устанавливает обязательства Владельца Сервиса
+          по&nbsp;неразглашению и&nbsp;обеспечению режима защиты конфиденциальности персональных
+          данных, которые Пользователь Сервиса предоставляет при регистрации в&nbsp;личном кабинете
+          на&nbsp;Сервисах.
+        </p>
+        <p>
+          3.2. Персональные данные, разрешённые к&nbsp;обработке в&nbsp;рамках настоящей Политики,
+          предоставляются Пользователем Сервиса путём заполнения регистрационной формы и&nbsp;могут
+          включать в&nbsp;себя следующую информацию: <br />
+          —&nbsp;Телефон;<br />
+          —&nbsp;Адрес электронной почты (e-mail);<br />
+          —&nbsp;Никнейм <br />
+          —&nbsp;Возраст; <br />
+          —&nbsp;Любую иную информацию, внесенную Пользователем Сервиса по&nbsp;своей инициативе,
+          за&nbsp;исключением специальных категорий персональных данных.
+        </p>
+        <p>
+          3.3. Владелец Сервиса дополнительно обрабатывает данные, которые автоматически передаются
+          при посещении страниц: <br />
+          —&nbsp;IP&nbsp;адрес; <br />
+          —&nbsp;информация из&nbsp;cookies; <br />
+          —&nbsp;информация о&nbsp;браузере (или иной программе, которая осуществляет доступ
+          к&nbsp;показу рекламы); <br />
+          —&nbsp;время доступа; <br />
+          —&nbsp;адрес страницы, на&nbsp;которой расположен рекламный блок; <br />
+          —&nbsp;реферер (адрес предыдущей страницы).
+        </p>
+        <p>
+          3.4. Сервисы осуществляют сбор статистики об&nbsp;IP-адресах своих пользователей. Данная
+          информация используется с&nbsp;целью выявления и&nbsp;решения технических проблем.
+        </p>
+        <h2>4. Цели сбора персональных данных Пользователя Сервиса</h2>
+        <p>
+          Персональные данные Пользователя Владелец Сервиса может использовать в&nbsp;целях:-
+          предоставления Пользователям Сервиса возможности использовать Сервис, идентификации
+          Пользователей Сервиса для предоставления им&nbsp;настроек Сервиса;<br />
+          —&nbsp;продвижения товаров, работ, услуг на&nbsp;рынке путем осуществления прямых
+          контактов с&nbsp;Пользователем Сервиса с&nbsp;помощью средств связи (в&nbsp;том числе
+          демонстрировать пользователям рекламу, отвечающую его интересам); <br />
+          —&nbsp;продажи Пользователям Сервиса товаров и&nbsp;услуг посредством сети Интернет;
+          <br />
+          —&nbsp;обеспечения возможности связи с&nbsp;Пользователем Сервиса, направление ему
+          уведомлений, запросов и&nbsp;информации, а&nbsp;также получение и&nbsp;обработка запросов,
+          жалоб и&nbsp;заявок Пользователей Сервиса. <br />
+          —&nbsp;проведения акций, стимулирующих лотерей и&nbsp;конкурсов для Пользователей Сервиса;
+          <br />
+          —&nbsp;проведения маркетинговых, статистических и&nbsp;аудиторных исследований, в&nbsp;том
+          числе опросов удовлетворенности Пользователя Сервиса; <br />
+          —&nbsp;предоставления доступа к&nbsp;Сервису и&nbsp;сервисам третьих лиц; <br />
+          —&nbsp;создания базы данных резюме Пользователей Сервиса.
+        </p>
+        <h2>5. Способы и сроки обработки персональной информации</h2>
+        <p>
+          5.1. Обработка персональных данных Пользователя Сервиса осуществляется в&nbsp;течение
+          срока, необходимого и&nbsp;установленного действующим законодательством Российской
+          Федерации.
+        </p>
+        <p>
+          5.2. В&nbsp;случае удаления учетной записи с&nbsp;Сервиса Владелец Сервиса сообщает
+          об&nbsp;этом третьим лицам если обработка персональных данных осуществляется другим лицом,
+          действующим по&nbsp;поручению Владельца Сервиса и&nbsp;в&nbsp;случае, если сохранение
+          персональных данных более не&nbsp;требуется для целей обработки персональных данных,
+          уничтожает персональные данные или обеспечивает их&nbsp;уничтожение (если обработка
+          персональных данных осуществляется другим лицом, действующим по&nbsp;поручению оператора)
+          в&nbsp;срок, установленный законодательством Российской Федерации.
+        </p>
+        <p>
+          5.3. Владелец Сервиса вправе передавать персональные данные третьим лицам
+          в&nbsp;соответствии со&nbsp;статьей 6&nbsp;Федерального закона «О&nbsp;персональных
+          данных». Перечень третьих лиц, которым Владелец Сервиса поручает обработку персональных
+          данных, публикуется на&nbsp;Сервисе.
+        </p>
+        <p>
+          5.4. Персональные данные Пользователя Сервиса могут быть переданы уполномоченным органам
+          государственной власти Российской Федерации только по&nbsp;основаниям
+          и&nbsp;в&nbsp;порядке, установленном законодательством Российской Федерации.
+        </p>
+        <p>
+          5.5. Персональные данные Пользователя Сервиса уничтожаются при: <br />
+          - самостоятельном удалении Пользователем Сервиса своих данных; <br />
+          - удалении Владельцем Сервиса информации, размещаемой Пользователем. <br />
+          В&nbsp;случае удаления персональной страницы Пользователя Сервиса Владелец Сервиса хранит
+          на&nbsp;своих электронных носителях персональные и&nbsp;иные необходимые данные
+          Пользователя Сервиса в&nbsp;течение срока, необходимого и&nbsp;установленного действующим
+          законодательством Российской Федерации срока.
+        </p>
+        <h2>6. Права Пользователя Сервиса</h2>
+        <p>
+          6.1. Пользователь Сервиса (либо его законный представитель) имеет право запросить
+          у&nbsp;Владельца Сервиса следующую информацию: <br />
+          —&nbsp;наименование и&nbsp;фактический адрес Владельца Сервиса; <br />
+          —&nbsp;подтверждение факта обработки Владельцем Сервиса его персональных данных; <br />
+          —&nbsp;правовые основания, цели и&nbsp;способы обработки его персональных данных; <br />
+          —&nbsp;обрабатываемые персональные данные, относящиеся к&nbsp;соответствующему
+          Пользователю Сервиса, и&nbsp;источник их&nbsp;получения; <br />
+          —&nbsp;сведения о&nbsp;лицах (за&nbsp;исключением работников Владельца Сервиса), которые
+          имеют доступ к&nbsp;персональным данным или которым могут быть предоставлены персональные
+          данные на&nbsp;основании договора (в&nbsp;т.ч. поручения) или на&nbsp;основании
+          федерального закона;<br />
+          —&nbsp;сроки обработки персональных данных, в&nbsp;том числе сроки их&nbsp;хранения;<br />
+          —&nbsp;наименование или фамилию, имя, отчество и&nbsp;адрес лица, осуществляющего
+          обработку персональных данных, если обработка поручена или будет поручена такому лицу.
+        </p>
+        <p>
+          Пользователь Сервисов (либо его законный представитель) вправе требовать уточнения его
+          персональных данных, их&nbsp;блокирования или уничтожения в&nbsp;случае, если персональные
+          данные являются неполными, устаревшими, неточными, незаконно полученными или
+          не&nbsp;являются необходимыми для заявленной цели обработки.
+        </p>
+        <h2>8. Дополнительные условия</h2>
+        <p>
+          8.1. Владелец Сервиса вправе вносить изменения в&nbsp;настоящую Политику без согласия
+          Пользователя Сервиса. Пользователь вправе подать жалобу в&nbsp;проверяющие органы.
+        </p>
+      </div>
+    </div>
+
+    <div class="popup term-of-use-popup">
+      <div class="popup__content">
+        <button class="popup__close-button">
+          <svg class="popup__cross-icon">
+            <use xlink:href="#icon-cross" />
+          </svg>
+        </button>
+        <h1 class="popup__title">Пользовательское соглашение ООО «Чайковский»</h1>
+        <p>
+          Настоящее Пользовательское соглашение (далее также&nbsp;— «Пользовательское соглашение»
+          и/или «Соглашение») регулирует отношения по&nbsp;использованию Сервиса, представляемого
+          ООО «Чайковский» (далее&nbsp;— «Сервис») и&nbsp;общие условия оказания услуг между ООО
+          «Чайковский» (ОГРН 1217700277739; ИНН 7726478551; место нахождения: 117105, г. Москва,
+          вн.тер.г. муниципальный округ Донской, Варшавское шоссе, дом&nbsp;9, строение&nbsp;1А,
+          этаж&nbsp;3, помещение&nbsp;I, комната&nbsp;1) (далее&nbsp;— «Владелец Сервиса»), которое
+          является юридическим лицом, созданным на&nbsp;территории Российской Федерации
+          и&nbsp;в&nbsp;соответствии с&nbsp;законодательством Российской Федерации, с&nbsp;одной
+          стороны, и&nbsp;физическим лицом, принявшим условия настоящего Соглашения путём
+          присоединения к&nbsp;настоящему Соглашению в&nbsp;целом и&nbsp;безоговорочно с&nbsp;другой
+          стороны, далее при совместном упоминании именуемые «Стороны»,
+          а&nbsp;по&nbsp;отдельности&nbsp;— «Сторона». Настоящее Соглашение и&nbsp;отношения Сторон,
+          возникшие из&nbsp;настоящего Соглашения, регулируются законодательством Российской
+          Федерации.
+        </p>
+        <h2>1. Термины и&nbsp;определения, используемые в&nbsp;настоящем Соглашении</h2>
+        <p>
+          <b>Акцепт Соглашения</b>&nbsp;— факт использования Сервиса автоматически признает
+          Пользователя принявшим безоговорочно и&nbsp;в&nbsp;целом условия настоящего Соглашения,
+          Политики конфиденциальности и&nbsp;иных документов, размещенных в&nbsp;Сервисе.
+        </p>
+        <p>
+          <b>Сервис</b>&nbsp;— интернет-сайт www.audioсlub.ru, приложения для мобильных устройств,
+          на&nbsp;которых Пользователи могут пользоваться Услугами.
+        </p>
+        <p>
+          <b>Пользователь Сервиса (Пользователь)</b>&nbsp;— лицо старше 16 лет, осуществляющее и
+          имеющее доступ к Сервису посредством сети Интернет. Лица младше 18 лет могут пользоваться
+          Сервисом только с разрешения законного представителя, акцептовавшего настоящее Соглашение.
+          Законный представитель Пользователя младше 18 лет, разрешая ребенку пользоваться Сервисом,
+          обязуется соблюдать условия Соглашения и нести ответственность за действия, которые
+          совершает в Сервисе несовершеннолетний Пользователь.
+        </p>
+        <p>
+          <b>Устройства</b>&nbsp;— персональные компьютеры, смартфоны, планшеты и&nbsp;иные
+          устройства, с&nbsp;помощью которых можно получить доступ к&nbsp;Сервису с&nbsp;помощью
+          сети Интернет.
+        </p>
+        <p>
+          <b>Услуга</b>&nbsp;— предоставление Владельцем Сервиса Пользователю возможности без оплаты
+          размещать, обрабатывать и&nbsp;удалять, использовать бесплатные материалы Владельца
+          Сервиса в&nbsp;соответствии с&nbsp;правилами, ограничениями и&nbsp;техническими
+          требованиями, указанными в&nbsp;настоящем Соглашении и&nbsp;на&nbsp;Сервисе.
+        </p>
+        <p><b>Учетная запись</b>&nbsp;— личный кабинет Пользователя.</p>
+        <h2>2. Предмет Соглашения</h2>
+        <p>
+          2.1. Владелец Сервиса предоставляет Пользователям Услуги непосредственно на&nbsp;Сервисе.
+        </p>
+        <p>
+          2.2. Для использования Сервиса Пользователь обязан принять, совершив Акцепт,
+          и&nbsp;соблюдать настоящее Соглашение. С&nbsp;момента Акцепта Соглашения Пользователем
+          настоящее Соглашение считается заключённым с&nbsp;Пользователем, и&nbsp;Пользователь
+          приобретает права и&nbsp;обязан исполнять обязанности, предусмотренные настоящим
+          Соглашением.
+        </p>
+        <p>
+          2.3. Изменение настоящего Соглашения совершается путём размещения Владельцем Сервиса
+          изменений настоящего Соглашения или новой редакции настоящего Соглашения в интерфейсе
+          Сервиса. Пользователь обязуется самостоятельно отслеживать изменения в Соглашении.
+          Совершение Пользователем действий, направленных на получение Услуг после изменения условий
+          Соглашения является подтверждением согласия Пользователя с новой редакцией Соглашения.
+        </p>
+        <p>
+          2.4. Фактический доступ Пользователя к Сервису, посредством Сервиса, фактическое
+          использование Пользователем Сервиса, возможно только на Устройствах, на которых
+          установлено необходимое и достаточное программное обеспечение, отвечающее техническим
+          требованиям, указанным в разделе 10 Соглашения и которое имеет техническую и фактическую
+          возможность доступа к сети Интернет.
+        </p>
+        <p>
+          2.5. Сервис относится к информационной продукции для детей, достигших возраста шестнадцати
+          лет (16+).
+        </p>
+        <h2>3. Регистрация на Сервисе</h2>
+        <p>
+          3.1. Пользователь должен пройти процедуру регистрации, создав Учетную запись, в&nbsp;том
+          числе с&nbsp;помощью сервисов третьих лиц (Pass.Media) указав все необходимые
+          и&nbsp;достоверные данные. В&nbsp;случае изменения указанных в&nbsp;учетной записи
+          сведений, Пользователь обязан незамедлительно внести изменения в&nbsp;Учетной записи.
+        </p>
+        <p>
+          3.2. Пароль от&nbsp;Учетной записи является конфиденциальным, Пользователь обязан хранить
+          пароль в&nbsp;тайне и&nbsp;не&nbsp;раскрывать его третьим лицам. В&nbsp;том случае, если
+          третьи лица могли получить доступ к&nbsp;паролю или получили его, необходимо установить
+          новый пароль и&nbsp;обратиться в&nbsp;службу поддержки, для проверки, был&nbsp;ли
+          осуществлен несанкционированный доступ к&nbsp;Учетной записи и&nbsp;принятия мер.
+        </p>
+        <p>
+          3.3. Пользователь принимает на&nbsp;себя полную ответственность перед Сервисом
+          и&nbsp;третьими лицами за&nbsp;действия, которые происходят с&nbsp;помощью его Учетной
+          записи.
+        </p>
+        <p>
+          3.4. Владелец Сервиса не&nbsp;несет ответственности за&nbsp;размещаемые Пользователем
+          в&nbsp;Учетной записи информацию и&nbsp;не&nbsp;осуществляет контроль доступа
+          к&nbsp;данной информации других Пользователей.
+        </p>
+        <h2>4. Права и обязанности Пользователя</h2>
+        <p>
+          <b>4.1. Пользователь имеет право:</b>
+        </p>
+        <p>
+          4.1.1. Пользоваться иными Услугами Владельца Сервиса в&nbsp;соответствии с&nbsp;условиями
+          Соглашения и&nbsp;действующего законодательства Российской Федерации.
+        </p>
+        <p>
+          <b>4.2. Пользователь обязан:</b>
+        </p>
+        <p>
+          4.2.1. Не&nbsp;загружать, не&nbsp;хранить, не&nbsp;публиковать, не&nbsp;распространять
+          и&nbsp;не&nbsp;предоставлять доступ или иным образом использовать любые комментарии,
+          сообщения, которые запрещены законодательством, нормами морали и&nbsp;нравственности.
+        </p>
+        <p>
+          4.2.2. не&nbsp;указывать данных третьих лиц с&nbsp;намерением выдать себя за&nbsp;другого
+          человека;
+        </p>
+        <p>
+          4.2.3. не&nbsp;использовать Сервис для регистрации информационной или рекламной страницы
+          юридического лица, иной организации и/или сообщества;
+        </p>
+        <p>4.2.4. не осуществлять рассылки спама;</p>
+        <p>
+          4.2.5. не&nbsp;использовать Сервис для размещения/распространения информации, содержащей
+          вирусы или другие компьютерные коды, файлы или программы, предназначенные для нарушения,
+          уничтожения либо ограничения функциональности любого компьютерного или
+          телекоммуникационного оборудования или программ, для осуществления несанкционированного
+          доступа, а&nbsp;также размещения ссылок на&nbsp;вышеуказанную информацию;
+        </p>
+        <p>
+          4.2.6.не использовать Сервис для сбора, хранения и&nbsp;распространения персональных
+          данных других лиц, а также для размещения ссылок на&nbsp;адреса электронной почты,
+          Интернет-сайтов (url), аккаунтов в социальных сетях и&nbsp;мессенджерах, номеров телефонов
+          Пользователя и&nbsp;третьих лиц;
+        </p>
+        <p>4.2.7. не нарушать нормальной работы Сервиса.</p>
+        <h2>5. Права и обязанности Владельца Сервиса</h2>
+        <p>
+          <b>5.1. Владелец Сервиса имеет право:</b>
+        </p>
+        <p>
+          5.1.1. В&nbsp;одностороннем порядке в&nbsp;любое время по&nbsp;своему усмотрению
+          заблокировать учетную запись Пользователя, в&nbsp;том числе, если Пользователь
+          не&nbsp;соблюдает любое из&nbsp;положений настоящего Соглашения, или если действия,
+          которые осуществляются с&nbsp;использованием учетной записи Пользователя, могут причинить
+          ущерб или ухудшить качество услуг или ущемить, или нарушить права третьих лиц, или
+          нарушают какие-либо законы или правила.
+        </p>
+        <p>
+          5.1.2. Определять структуру и&nbsp;наполнение Сервиса, разрешать и&nbsp;ограничивать
+          доступ к&nbsp;Сервису в соответствии с&nbsp;настоящим Соглашением и&nbsp;законодательством
+          Российской Федерации.
+        </p>
+        <p>
+          5.1.3. В&nbsp;случае нарушения Пользователем настоящего Соглашения, любых иных документов
+          размещенных на Сервисе или законодательства Владелец Сервиса вправе приостанавливать,
+          ограничивать или прекращать доступ такого Пользователя ко&nbsp;всем или к&nbsp;любому
+          из&nbsp;разделов Сервиса в&nbsp;одностороннем порядке, а&nbsp;также блокировать
+          возможность использования Сервиса&nbsp;и (блокировать IP-адреса) для Пользователей
+          в&nbsp;любое время, с&nbsp;предварительным уведомлением или без такового, не&nbsp;отвечая
+          за&nbsp;любые убытки, которые могут быть причинены Пользователю таким действием;
+        </p>
+        <p>
+          5.1.4. Проводить стимулирующие маркетинговые мероприятия разного характера с&nbsp;целью
+          мотивации Пользователей, привлечения новых пользователей и&nbsp;повышения рейтинга
+          Сервиса.
+        </p>
+        <p>
+          5.1.5. По&nbsp;своему собственному усмотрению изменять или удалять любую публикуемую
+          на&nbsp;Сервисе информацию, полностью или частично и&nbsp;любые элементы и&nbsp;составные
+          части Сервиса, приостанавливать, ограничивать или прекращать доступ Пользователя
+          ко&nbsp;всем или к&nbsp;любому из&nbsp;разделов Сервиса в&nbsp;любое время по&nbsp;любой
+          причине или без объяснения причин, с&nbsp;предварительным уведомлением или без такового.
+          При этом Стороны соглашаются, что Владелец Сервиса не&nbsp;отвечает за&nbsp;любой вред,
+          который может быть причинен Пользователю такими действиями.
+        </p>
+        <p>
+          5.1.6. Устанавливать любые ограничения в&nbsp;использовании Сервиса, в&nbsp;любое время
+          изменять настоящее Соглашение в&nbsp;одностороннем порядке, без получения согласия
+          Пользователя.
+        </p>
+        <p>
+          5.1.7. Осуществлять рассылки Пользователям сообщений, в&nbsp;т.ч. посредством сетей
+          электросвязи, содержащих организационно-техническую или иную информацию
+          о&nbsp;возможностях Сервиса, а&nbsp;также информационные материалы Владельца Сервиса
+          и&nbsp;третьих лиц.
+        </p>
+        <p>
+          5.1.8. Размещать на&nbsp;Сервисе рекламу, в&nbsp;том числе и&nbsp;на&nbsp;Учетной странице
+          Пользователя. Владелец Сервиса вправе разрешить размещение рекламы любым третьим лицам.
+        </p>
+        <p>
+          5.1.9. Использовать файлы под названием «cookie». Информация, которую Владелец Сервиса
+          получает посредством cookie-файлов, помогает предоставлять Пользователю Услуги
+          в&nbsp;наиболее удобном для Пользователя виде. Владелец Сервиса использует cookie для
+          аутентификации Пользователя на&nbsp;Сервисе, а именно, запоминает Пользователей,
+          и&nbsp;это дает возможность не&nbsp;вводить свои учетные данные («логиниться») каждый раз
+          заново. Пользователь имеет право отключить cookie в&nbsp;настройках безопасности браузера.
+          Важно понимать, что настройки нужно применить во&nbsp;всех браузерах, которыми
+          Пользователь пользуется (на&nbsp;компьютере и&nbsp;в&nbsp;телефоне). В&nbsp;случае если
+          Пользователь примет решение отключить cookie, часть функций Сервиса могут стать недоступны
+          для Пользователя или могут работать непредсказуемо.
+        </p>
+        <p>
+          <b>5.2. Владелец Сервиса обязан: </b>
+        </p>
+        <p>
+          5.2.1. Поддерживать работоспособность Сервиса и&nbsp;его наполнение, осуществлять текущее
+          управление разделами Сервиса, обеспечивать своевременное устранение ошибок работы.
+        </p>
+        <h2>6. Финансовые условия</h2>
+        <p>
+          6.1. Пользователь имеет право без взимания платы использовать Материалы доступные для
+          бесплатного использования.
+        </p>
+        <h2>7. Ограничение ответственности Владельца Сервиса</h2>
+        <p>
+          7.1. Владелец Сервиса не&nbsp;несет ответственности за&nbsp;любую информацию, размещенную
+          третьими лицами, в&nbsp;том числе на&nbsp;сайтах третьих лиц, к&nbsp;которым Пользователи
+          получили доступ через Сервис, включая, в&nbsp;том числе, рекламные материалы, любые мнения
+          или утверждения, выраженные на&nbsp;сайтах третьих лиц или в&nbsp;их&nbsp;материалах.
+          Размещенные на&nbsp;Сервисе ссылки или руководства по&nbsp;скачиванию файлов и/или
+          установке программ третьих лиц, cсылки на&nbsp;любой сайт, продукт, услугу, любую
+          информацию не&nbsp;означают поддержки или одобрения этих действий со&nbsp;стороны
+          Владельца Сервиса. Если Пользователь решил покинуть Сайт и&nbsp;перейти к&nbsp;сайтам
+          третьих лиц или использовать, или установить программы третьих лиц, он&nbsp;делает это
+          на&nbsp;свой риск и&nbsp;с&nbsp;этого момента условия настоящего Соглашения более
+          не&nbsp;распространяются на&nbsp;Пользователя. Владелец Сервиса не&nbsp;несет
+          ответственности за&nbsp;услуги (товары), предлагаемые третьими лицами на&nbsp;Сервисе.
+          Пользователь согласен с&nbsp;тем, что Владелец Сервиса не&nbsp;несет никакой
+          ответственности ни&nbsp;по&nbsp;каким договорам между Пользователем и&nbsp;третьими
+          лицами.
+        </p>
+        <p>
+          7.2. В&nbsp;случае возникновения нежелательных последствий, понесенных Пользователем
+          в&nbsp;результате пользования Сервисом, Владелец Сервиса обязуется рассматривать обращения
+          Пользователей и&nbsp;принимать меры для устранения таких последствий в&nbsp;соответствии
+          с&nbsp;условиями настоящего Соглашения и законодательством Российской Федерации.
+        </p>
+        <p>
+          7.3. Владелец Сервиса обеспечивает работу Сервиса, однако не&nbsp;несет ответственность
+          за&nbsp;их бесперебойную работу, или за&nbsp;причинение любых других убытков, которые
+          возникли или могут возникнуть при пользовании Сервисом, в&nbsp;том числе и&nbsp;вследствие
+          любых действий Владельца Сервиса, не&nbsp;имеющих прямой цели причинения вреда
+          Пользователю.
+        </p>
+        <p>
+          7.4. Владелец Сервиса не&nbsp;несет ответственности за&nbsp;неисполнение либо ненадлежащее
+          исполнение своих обязательств вследствие сбоев в&nbsp;телекоммуникационных
+          и&nbsp;энергетических сетях третьих лиц, действий вредоносных программ, а&nbsp;также
+          недобросовестных действий третьих лиц, направленных на несанкционированный доступ&nbsp;и
+          (или) выведение из&nbsp;строя программных&nbsp;и (или) аппаратных средств Сервиса.
+        </p>
+        <p>
+          7.5. Владелец Сервиса не&nbsp;несет ответственности за&nbsp;некорректное функционирование
+          Сервиса, сбои и перерывы в&nbsp;работе Сервиса, повреждение или утерю данных, содержащихся
+          на&nbsp;Сервисе, если они были вызваны обстоятельствами непреодолимой силы, в&nbsp;том
+          числе в&nbsp;случае пожаров, эпидемий, чрезвычайных погодных условий, перебоев подачи
+          электроэнергии, распространения вирусных компьютерных программ, а также если такие
+          обстоятельства были вызваны умышленными незаконными действиями третьих лиц.
+        </p>
+        <h2>8. Данные Пользователей</h2>
+        <p>
+          8.1. Использование Сервиса требует предоставления возраста, электронной почты, телефона,
+          уникального на&nbsp;платформе ника (название канала), что не&nbsp;является персональными
+          данными. Сервис не&nbsp;требует предоставления персональных данных (таких как: ФИО
+          полностью, полная дата рождения, адрес проживания, сведения о&nbsp;семейном положении,
+          электронная почта, содержащая в&nbsp;своем адресе персональные данные), в&nbsp;связи
+          с&nbsp;чем при использовании Сервиса Пользователь обязуется не&nbsp;вводить никаких ваших
+          персональных данных. Любая информация, содержащая признаки наличия в&nbsp;них персональных
+          данных системой приниматься не&nbsp;будет. Тем не&nbsp;менее, в&nbsp;случае если
+          по&nbsp;какой-либо причине Пользователь использовал свои персональные данные, и&nbsp;они
+          были приняты Сервисом, считается, что тем самым Пользователь предоставил Сервису согласие
+          на&nbsp;обработку своих персональных данных (включая право осуществить их&nbsp;передачу
+          третьим лицам). Сервис выполнит все требования законодательства&nbsp;РФ
+          о&nbsp;персональных данных в&nbsp;связи с&nbsp;их&nbsp;обработкой.
+        </p>
+        <p>
+          8.2&nbsp;Во время просмотра любой страницы Сервиса в&nbsp;браузере Пользователю
+          загружается сама страница, а&nbsp;также небольшой текстовый файл под названием «cookie».
+          Информация, которую Владелец Сервиса получает посредством cookie-файлов, помогает
+          предоставлять Пользователю Услуги в&nbsp;наиболее удобном для Пользователя виде.
+        </p>
+        <p>
+          8.3 Владелец Сервиса использует cookie для аутентификации Пользователя на&nbsp;Сервисе
+          в&nbsp;браузере, а&nbsp;именно, запоминает Пользователей, и&nbsp;это дает возможность
+          не&nbsp;вводить свои учетные данные («логиниться») каждый раз заново.
+        </p>
+        <p>
+          8.4 Пользователь имеет право отключить cookie в&nbsp;настройках безопасности браузера.
+          Важно понимать, что настройки нужно применить во&nbsp;всех браузерах, которыми
+          Пользователь пользуется (на&nbsp;компьютере и&nbsp;в&nbsp;телефоне). В&nbsp;случае если
+          Пользователь примет решение отключить cookie, часть функций Сервиса могут стать недоступны
+          для Пользователя или могут работать непредсказуемо.
+        </p>
+        <h2>9. Технические требования</h2>
+        <p>
+          9.1. Для получения доступа к&nbsp;Сервису Пользователю требуется Устройство
+          с&nbsp;установленной на&nbsp;нем операционной системой и&nbsp;программными приложениями
+          для взаимодействия с&nbsp;глобальной сетью Интернет сертифицированное компанией
+          производителем Устройств в&nbsp;Российской Федерации.
+        </p>
+        <p>
+          9.2. Сервис рассчитан на&nbsp;взаимодействие только с&nbsp;официальным, лицензионным
+          и&nbsp;не&nbsp;модифицированным программным обеспечением.
+        </p>
+        <p>
+          9.3. Пользователь соглашается с&nbsp;тем, что скорость доступа к&nbsp;Сервису
+          в&nbsp;глобальной сети Интернет может меняться в&nbsp;силу загруженности канала
+          Пользователя трафиком от&nbsp;других ресурсов или по&nbsp;иным, не&nbsp;зависящим
+          от&nbsp;Владельца Сервиса, причинам. Владелец Сервиса не&nbsp;несет ответственности
+          за&nbsp;то, что в&nbsp;конкретное время, в&nbsp;конкретном месте Пользователь не&nbsp;смог
+          получить доступ к&nbsp;Сервису по&nbsp;причине низкой скорости доступа.
+        </p>
+        <p>
+          9.4. Пользователь соглашается с&nbsp;тем, что если Устройство пользователя
+          не&nbsp;соответствует техническим требованиям Владельца Сервиса,
+          то&nbsp;он&nbsp;не&nbsp;сможет получить доступ к&nbsp;Сервису и/или Сервис может работать
+          не&nbsp;корректно.
+        </p>
+        <p>
+          9.5. Пользователь обязан следовать указанному Сервисом алгоритму для установки
+          и&nbsp;обновления, использовать, а&nbsp;также выбирать на&nbsp;свое усмотрение
+          и&nbsp;использовать антивирусные программы для защиты Устройств при использовании Сервиса.
+          Сервис не&nbsp;несет ответственности за&nbsp;возможные вирусы или сбои, а&nbsp;также
+          вредоносный контент, доступ к&nbsp;которому Пользователь получил на&nbsp;Сервисе.
+        </p>
+        <h2>10. Заключительные положения</h2>
+        <p>
+          10.1. Настоящее Соглашение регулируется и&nbsp;толкуется в&nbsp;соответствии
+          с&nbsp;законодательством Российской Федерации.
+        </p>
+        <p>
+          10.2. Если по&nbsp;тем или иным причинам одна или несколько норм настоящего Соглашения
+          является недействительной или не&nbsp;имеющей юридической силы, это не&nbsp;оказывает
+          влияния на&nbsp;действительность или применимость остальных норм.
+        </p>
+        <p>
+          10.3. По&nbsp;всем вопросам и&nbsp;претензиям Пользователи могут обращаться
+          по&nbsp;электронному адресу: info@audioklub.ru
+        </p>
+        <p>Дата публикации 06.08.2021</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="main">
+        <div class="footer__content">
+          <h2 class="footer__title">
+            Весь мир аудио<br />
+            в одном <br />приложении
+          </h2>
+          <p class="footer__text">
+            Скачайте приложение,<br />
+            или слушайте в браузере
+          </p>
+          <button class="button button_big footer__button" id="">Слушать бесплатно</button>
+
+          <div class="footer__download-links">
+            <a
+              class="footer__download-link"
+              href="https://play.google.com/store/apps/details?id=ru.audioclub"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="footer__download-icon">
+                <use xlink:href="#icon-google-play" />
+              </svg>
+            </a>
+            <a
+              class="footer__download-link"
+              href="https://apps.apple.com/us/app/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D0%BA%D0%BB%D1%83%D0%B1/id1588217767"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="footer__download-icon">
+                <use xlink:href="#icon-app-store" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="footer__socials">
+            <p class="footer__socials-title">Мы в соц. сетях:</p>
+            <a
+              class="footer__social-link"
+              href="https://vk.com/public208053239"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="footer__vk-icon">
+                <use xlink:href="#icon-vk" />
+              </svg>
+            </a>
+            <a
+              class="footer__social-link"
+              href="https://www.instagram.com/audioclub.official/?hl=en9"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="footer__instagram-icon">
+                <use xlink:href="#icon-instagram" />
+              </svg>
+            </a>
+            <a
+              class="footer__social-link"
+              href="https://ok.ru/group/64025091834099"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg class="footer__ok-icon">
+                <use xlink:href="#icon-ok" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__image-wrapper">
+          <img class="footer__image" src="./assets/images/footer-phone.png" />
+        </div>
+      </div>
+      <div class="fade"></div>
+    </footer>
+    <script src="./assets/js/bundle.js?hash"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      new Swiper('#banner', {
+        centeredSlides: true,
+        autoplay: {
+          delay: 4000,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true,
+        },
+        navigation: {},
+      });
+
+      const mediaTabs = [
+        {
+          name: 'Mix',
+          type: 'mix',
+        },
+        {
+          name: 'Музыка',
+          type: 'music',
+        },
+        {
+          name: 'Подкасты',
+          type: 'podcasts',
+        },
+        {
+          name: 'Аудиокниги',
+          type: 'audiobooks',
+        },
+        {
+          name: 'Радио',
+          type: 'radio',
+        },
+      ];
+
+      new Swiper('#media', {
+        centeredSlides: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function (index, className) {
+            const label = mediaTabs[index].name;
+            const type = mediaTabs[index].type;
+
+            return `<div class='swiper-pagination-item ${className}'>
+
+<div class="content-tab ">
+  <input
+    class="content-tab__input"
+    type="radio"
+    id="${type}"
+    name=media-tabs
+    value=${type}
+
+  />
+  <label class="content-tab__label" for=${type}>
+    <div class="content-tab__icon-wrapper">
+      	<svg class="content-tab__icon">
+		<use xlink:href="#icon-${type}" />
+	</svg>
+
+    </div>
+    <p class="content-tab__label-text">
+      ${label}
+    </p>
+  </label>
+</div>
+</div>`;
+          },
+        },
+        navigation: {},
+      });
+    </script>
+  </body>
+</html>
